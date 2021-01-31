@@ -12,6 +12,9 @@ public class JobTest {
     Job testJob3;
     Job testJob4;
     Job testJob5;
+    Job testJob6;
+    Job testJob7;
+    Job testJob8;
 
     @Before
     public void CreateJobObject() {
@@ -20,6 +23,10 @@ public class JobTest {
         testJob3 = new Job();
         testJob4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         testJob5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJob6 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency("Persistence"));
+        testJob7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
+        testJob8 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+
 
     }
 
@@ -57,5 +64,31 @@ public class JobTest {
     public void testToStringForBlankLinesAtBeginningAndEnd(){
         assertEquals(testJob4.toString().substring(0,1), "\n");
         assertEquals(testJob4.toString().substring(testJob4.toString().length()-1, testJob4.toString().length()), "\n");
+    }
+
+    @Test
+    public void testLabelandDataInEveryField(){
+       //Do I need to test for the id?
+        // assertTrue(testJob4.toString().contains("ID:"+"\n"));
+        assertTrue(testJob4.toString().contains("Name: Product tester"+"\n"));
+        assertTrue(testJob4.toString().contains("Employer: ACME"+"\n"));
+        assertTrue(testJob4.toString().contains("Location: Desert"+"\n"));
+        assertTrue(testJob4.toString().contains("Position Type: Quality control"+"\n"));
+        assertTrue(testJob4.toString().contains("Core Competency: Persistence"+"\n"));
+    }
+
+    @Test
+    public void testEmptyFieldFiller() {
+      assertTrue(testJob6.toString().contains("Name: Data not available"));
+      assertTrue(testJob6.toString().contains("Employer: Data not available"));
+      assertTrue(testJob6.toString().contains("Location: Data not available"));
+      assertTrue(testJob6.toString().contains("Position Type: Data not available"));
+      assertTrue(testJob7.toString().contains("Core Competency: Data not available"));
+
+    }
+
+    @Test
+    public void testAllFieldsEmptyMessage(){
+        assertTrue(testJob8.toString().contains("OOPS! This job does not seem to exist"));
     }
 }
