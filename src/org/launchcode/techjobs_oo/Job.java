@@ -1,6 +1,7 @@
 package org.launchcode.techjobs_oo;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Job {
 
@@ -18,8 +19,8 @@ public class Job {
     //  the 'id' field.
 
     public Job() {
-          id = nextId;
-          nextId++;
+        id = nextId;
+        nextId++;
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
@@ -47,8 +48,19 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return
+            "\n" +
+            "id=" + id +"\n" +
+            "name='" + name + "\n" +
+            "employer=" + employer +"\n" +
+            "location=" + location +"\n" +
+            "positionType=" + positionType +"\n" +
+            "coreCompetency=" + coreCompetency +"\n";
+    }
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
+// TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
     public String getName() {

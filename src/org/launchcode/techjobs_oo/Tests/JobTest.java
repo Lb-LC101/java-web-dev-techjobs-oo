@@ -25,8 +25,7 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-        assertEquals(1, testJob1.getId());
-        assertEquals(2, testJob2.getId());
+        assertTrue(testJob1.getId() >0);
         assertFalse(testJob1 == testJob2);
         assertTrue(testJob2.getId()-testJob1.getId() == 1);
         assertTrue(testJob3.getId()-testJob2.getId() == 1);
@@ -36,6 +35,7 @@ public class JobTest {
     public void testJobConstructorSetsAllFields(){
         //What about id? //
         //testJob4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertTrue(testJob4.getId() >0);
         assertTrue(testJob4.getName() instanceof String);
         assertEquals("Product tester", testJob4.getName());
         assertTrue(testJob4.getEmployer() instanceof Employer);
@@ -50,10 +50,12 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality(){
-        //does this do what I want it to?
-        assertFalse(equals(testJob4.getId()));
-        assertFalse(equals(testJob5.getId()));
-        //verifying testJob4 and testJob5 don't have matching ID numbers without using the equals method:
-        assertFalse(testJob5.getId() == testJob4.getId());
+        assertFalse(testJob4.equals(testJob5));
+    }
+
+    @Test
+    public void testToStringForBlankLinesAtBeginningAndEnd(){
+        assertEquals(testJob4.toString().substring(0,1), "\n");
+        assertEquals(testJob4.toString().substring(testJob4.toString().length()-1, testJob4.toString().length()), "\n");
     }
 }
